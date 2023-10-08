@@ -36,3 +36,13 @@
 /src/Assinaturas.WebApi/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
 /src/Assinaturas.WebApi/obj/Debug/net6.0/Assinaturas.WebApi.AssemblyInfo.cs
 /src/Assinaturas.WebApi/obj/Debug/net6.0/Assinaturas.WebApi.GlobalUsings.g.cs
+/.vs/cast-validacao-conhecimentos/v17/.wsuo
+/.vs/VSWorkspaceState.json
+/src/Assinaturas.Application/obj/Assinaturas.Application.csproj.nuget.dgspec.json
+/src/Assinaturas.Application/obj/project.assets.json
+/src/Assinaturas.Domain/obj/Assinaturas.Domain.csproj.nuget.dgspec.json
+/src/Assinaturas.Domain/obj/project.assets.json
+/src/Assinaturas.Infrastructure.Persistence/obj/Assinaturas.Infrastructure.Persistence.csproj.nuget.dgspec.json
+/src/Assinaturas.Infrastructure.Persistence/obj/project.assets.json
+/tests/Assinaturas.UnitTests/obj/project.assets.json
+/tests/Assinaturas.UnitTests/obj/Assinaturas.UnitTests.csproj.nuget.dgspec.json
