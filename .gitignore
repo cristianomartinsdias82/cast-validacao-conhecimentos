@@ -46,3 +46,8 @@
 /src/Assinaturas.Infrastructure.Persistence/obj/project.assets.json
 /tests/Assinaturas.UnitTests/obj/project.assets.json
 /tests/Assinaturas.UnitTests/obj/Assinaturas.UnitTests.csproj.nuget.dgspec.json
+/src/Assinaturas.WebApi/bin/Debug/net6.0
+/src/Assinaturas.WebApi/obj/Debug/net6.0
+/src/Assinaturas.WebApi.Presentation/bin/Debug/net6.0
+/src/Assinaturas.WebApi.Presentation/obj
+/.vs/Cast.ValidacaoConhecimentos/config
