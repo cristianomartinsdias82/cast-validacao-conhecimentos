@@ -51,3 +51,8 @@
 /src/Assinaturas.WebApi.Presentation/bin/Debug/net6.0
 /src/Assinaturas.WebApi.Presentation/obj
 /.vs/Cast.ValidacaoConhecimentos/config
+/src/Assinaturas.Application/obj/Debug/net6.0/Assinaturas.Application.csproj.FileListAbsolute.txt
+/src/Assinaturas.Domain/obj/Debug/net6.0/Assinaturas.Domain.csproj.FileListAbsolute.txt
+/src/Assinaturas.Infrastructure.Persistence/obj/Debug/net6.0/Assinaturas.Infrastructure.Persistence.csproj.FileListAbsolute.txt
+/src/Assinaturas.WebUI/obj/Debug/net6.0/Assinaturas.WebUI.csproj.FileListAbsolute.txt
+/tests/Assinaturas.UnitTests/obj/Debug/net6.0/Assinaturas.UnitTests.csproj.FileListAbsolute.txt
