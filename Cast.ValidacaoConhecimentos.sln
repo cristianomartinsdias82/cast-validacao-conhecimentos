@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - UnitTests", "1 - UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assinaturas.UnitTests", "tests\Assinaturas.UnitTests\Assinaturas.UnitTests.csproj", "{F742DDE1-66F0-4A4F-9287-E3670B448C4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assinaturas.WebApi.Presentation", "src\Assinaturas.WebApi.Presentation\Assinaturas.WebApi.Presentation.csproj", "{A97602C3-B40B-4D59-8AA1-7874E6F7591A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assinaturas.WebApi.Presentation", "src\Assinaturas.WebApi.Presentation\Assinaturas.WebApi.Presentation.csproj", "{A97602C3-B40B-4D59-8AA1-7874E6F7591A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
