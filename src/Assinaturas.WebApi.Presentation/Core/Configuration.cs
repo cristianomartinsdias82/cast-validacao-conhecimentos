@@ -4,6 +4,7 @@ using Carter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using static Assinaturas.WebApi.Presentation.Core.GlobalErrorHandler;
 
 namespace Assinaturas.WebApi.Presentation.Core;
 
@@ -19,6 +20,8 @@ public static class Configuration
         var app = builder.Build();
 
         app.MapCarter();
+
+        app.UseExceptionHandler(HandleError);
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

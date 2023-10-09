@@ -6,6 +6,10 @@ public sealed class PesquisarPorCepRequestValidator : AbstractValidator<Pesquisa
 {
     public PesquisarPorCepRequestValidator()
     {
-        
+        RuleFor(pesq => pesq.Cep)
+            .NotEmpty()
+            .WithErrorCode("1001")
+            .Matches(@"\d{8}")
+            .WithErrorCode("1002");
     }
 }

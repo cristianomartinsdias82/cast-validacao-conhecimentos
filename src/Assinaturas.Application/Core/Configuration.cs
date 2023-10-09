@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using Assinaturas.Application.Core.Behaviours.Validation;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -12,7 +14,11 @@ public static class Configuration
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddValidatorsFromAssembly(ApplicationAssemblyRef)
-                .AddMediatR(config => config.RegisterServicesFromAssembly(ApplicationAssemblyRef));
+                .AddMediatR(config =>
+                {
+                    config.RegisterServicesFromAssembly(ApplicationAssemblyRef);
+                    services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+                });
 
         return services;
     }
