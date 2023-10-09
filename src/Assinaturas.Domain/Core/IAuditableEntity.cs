@@ -2,8 +2,8 @@
 
 public interface IAuditableEntity : IEntity
 {
-    DateTime CreatedOn { get; }
-    Guid CreatedUserId { get; }
+    DateTime CreatedOn { get; set; }
+    Guid CreatedUserId { get; set; }
 
     DateTime? UpdatedOn { get; set; }
     Guid? UpdatedUserId { get; set; }
