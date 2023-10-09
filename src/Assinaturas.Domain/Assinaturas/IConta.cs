@@ -1,6 +1,8 @@
-﻿namespace Assinaturas.Domain.Assinaturas;
+﻿using Assinaturas.Domain.Core;
 
-public interface IConta
+namespace Assinaturas.Domain.Assinaturas;
+
+public interface IConta : IEntity
 {
     string Nome { get; }
     string Descricao { get; }
