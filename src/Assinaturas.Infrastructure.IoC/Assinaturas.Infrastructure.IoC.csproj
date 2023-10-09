@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Assinaturas.Infrastructure.Integrations.ViaCep\Assinaturas.Infrastructure.Integrations.ViaCep.csproj" />
+    <ProjectReference Include="..\Assinaturas.Infrastructure.Persistence.Ef\Assinaturas.Infrastructure.Persistence.Ef.csproj" />
+  </ItemGroup>
+
+</Project>

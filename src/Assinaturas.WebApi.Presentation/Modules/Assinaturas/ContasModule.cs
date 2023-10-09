@@ -1,4 +1,5 @@
 ﻿using Carter;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -22,21 +23,21 @@ public class ContasModule : ICarterModule
 
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet(ROUTE, (CancellationToken cancellationToken) =>
+        app.MapGet(ROUTE, (ISender sender, CancellationToken cancellationToken) =>
         {
             return Results.Ok(new string[] { "X", "Y", "Z" });
         })
         .WithName(RouteNames.GetContas);
 
 
-        app.MapGet($"{ROUTE}/{{id:Guid}}", (Guid id, CancellationToken cancellationToken) =>
+        app.MapGet($"{ROUTE}/{{id:Guid}}", (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
             return Results.Ok(new { conta = "X" });
         })
         .WithName(RouteNames.GetContaById);
 
 
-        app.MapPost(ROUTE, (object conta, CancellationToken cancellationToken) =>
+        app.MapPost(ROUTE, (object conta, ISender sender, CancellationToken cancellationToken) =>
         {
             var newlyCreatedFakeContaId = Guid.NewGuid();
 
@@ -45,14 +46,14 @@ public class ContasModule : ICarterModule
         .WithName(RouteNames.PostContas);
 
 
-        app.MapPut(ROUTE, (object conta, CancellationToken cancellationToken) =>
+        app.MapPut(ROUTE, (object conta, ISender sender, CancellationToken cancellationToken) =>
         {
             return Results.Ok(conta);
         })
         .WithName(RouteNames.PutContas);
 
 
-        app.MapDelete($"{ROUTE}/{{id:Guid}}", (Guid id, CancellationToken cancellationToken) =>
+        app.MapDelete($"{ROUTE}/{{id:Guid}}", (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
             return Results.NoContent();
         })

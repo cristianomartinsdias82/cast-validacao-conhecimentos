@@ -7,14 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="MediatR.Contracts" Version="2.0.1" />
-	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Carter" Version="6.1.1" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Assinaturas.Application\Assinaturas.Application.csproj" />
-    <ProjectReference Include="..\Assinaturas.Infrastructure.IoC\Assinaturas.Infrastructure.IoC.csproj" />
   </ItemGroup>
 
 </Project>
