@@ -1,5 +1,6 @@
-﻿using MediatR;
+﻿using Assinaturas.Application.Core.Results;
+using MediatR;
 
 namespace Assinaturas.Application.Enderecos.PesquisarPorCep;
 
-public record struct PesquisarPorCepRequest(string Cep) : IRequest<PesquisarPorCepResponse>;
+public record struct PesquisarPorCepRequest(string Cep) : IRequest<Result<PesquisarPorCepResponse, int>>;

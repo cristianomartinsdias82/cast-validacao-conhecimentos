@@ -1,4 +1,5 @@
-﻿using Carter;
+﻿using Assinaturas.Application.Enderecos.PesquisarPorCep;
+using Carter;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -20,9 +21,14 @@ public class EnderecosModule : ICarterModule
 
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet(ROUTE, ([FromQuery]string cep, ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet(ROUTE, async ([FromQuery]string cep, ISender sender, CancellationToken cancellationToken) =>
         {
-            return Results.Ok(new string[] { "X", "Y", "Z" });
+            var result = await sender.Send(new PesquisarPorCepRequest(cep), cancellationToken);
+
+            return result.Match(
+                response => !response.Endereco.Vazio ? Results.Ok(response.Endereco) : Results.NotFound(),
+                _ => Results.Problem(extensions: new Dictionary<string, object?> { ["errorCode"] = result.Error })
+            );
         })
         .WithName(RouteNames.PesquisarPorCep);
     }

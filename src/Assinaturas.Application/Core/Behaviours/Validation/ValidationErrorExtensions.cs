@@ -9,6 +9,8 @@ public static class ValidationErrorExtensions
         => new(validationFailure.PropertyName, validationFailure.ErrorCode, validationFailure.ErrorMessage);
 
     public static Failure MapToFailure(this ValidationException validationException, string message = default!)
-        => new Failure(message ?? validationException.Message, validationException.Errors.Select(MapToFailureItem).ToList());
+        => new (message ?? validationException.Message, validationException.Errors.Select(MapToFailureItem).ToList());
 
+    public static Failure MapToFailure(this ValidationException validationException, int messageCode)
+        => new(messageCode, validationException.Errors.Select(MapToFailureItem).ToList());
 }

@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Assinaturas.Application.Core.Results;
+using MediatR;
 
 namespace Assinaturas.Application.Enderecos.PesquisarPorCep;
 
-public sealed class PesquisarPorCepHandler : IRequestHandler<PesquisarPorCepRequest, PesquisarPorCepResponse>
+public sealed class PesquisarPorCepHandler : IRequestHandler<PesquisarPorCepRequest, Result<PesquisarPorCepResponse, int>>
 {
     private readonly IPesquisaEnderecoService _pesquisaEnderecoService;
 
@@ -11,10 +12,13 @@ public sealed class PesquisarPorCepHandler : IRequestHandler<PesquisarPorCepRequ
         _pesquisaEnderecoService = pesquisaEnderecoService;
     }
 
-    public async Task<PesquisarPorCepResponse> Handle(PesquisarPorCepRequest request, CancellationToken cancellationToken)
+    public async Task<Result<PesquisarPorCepResponse, int>> Handle(PesquisarPorCepRequest request, CancellationToken cancellationToken)
     {
-        //TODO: Implement it
+        var result = await _pesquisaEnderecoService.PesquisarPorCepAsync(request.Cep, cancellationToken);
 
-        return new(default!);
+        if (result.IsSuccessful)
+            return new PesquisarPorCepResponse(result.Value);
+
+        return result.Error;
     }
 }

@@ -9,6 +9,8 @@ public static class Configuration
 {
     public static IServiceCollection AddViaCepIntegrationClient(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddSingleton(configuration.GetSection(nameof(ViaCepIntegrationSettings)).Get<ViaCepIntegrationSettings>()!);
+
         services.TryAddScoped<IPesquisaEnderecoService, PesquisaEnderecoService>();
 
         return services;

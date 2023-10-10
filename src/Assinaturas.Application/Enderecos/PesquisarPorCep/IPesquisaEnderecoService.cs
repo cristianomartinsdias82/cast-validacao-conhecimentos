@@ -1,6 +1,8 @@
-﻿namespace Assinaturas.Application.Enderecos.PesquisarPorCep;
+﻿using Assinaturas.Application.Core.Results;
+
+namespace Assinaturas.Application.Enderecos.PesquisarPorCep;
 
 public interface IPesquisaEnderecoService
 {
-    Task<EnderecoDto?> PesquisarPorCepAsync(string cep, CancellationToken cancellationToken = default);
+    Task<Result<EnderecoDto, int>> PesquisarPorCepAsync(string cep, CancellationToken cancellationToken = default);
 }
