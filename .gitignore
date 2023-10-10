@@ -79,3 +79,4 @@
 /src/Assinaturas.Infrastructure.Persistence.Ef/obj/Debug/net6.0/Assinaturas.Infrastructure.Persistence.Ef.AssemblyInfo.cs
 /src/Assinaturas.Infrastructure.Persistence.Ef/obj/Debug/net6.0/Assinaturas.Infrastructure.Persistence.Ef.GlobalUsings.g.cs
 /src/Assinaturas.Infrastructure.Persistence.Ef/obj/project.assets.json
+/tests/Assinaturas.UnitTests/bin/Debug/net6.0/CoverletSourceRootsMapping
