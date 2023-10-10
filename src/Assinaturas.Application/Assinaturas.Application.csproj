@@ -12,10 +12,18 @@
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Assinaturas.Domain\Assinaturas.Domain.csproj" />
+    <ProjectReference Include="..\Assinaturas.SharedKernel\Assinaturas.SharedKernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+	  <_Parameter1>Assinaturas.UnitTests</_Parameter1>
+	</AssemblyAttribute>
   </ItemGroup>
 
 </Project>

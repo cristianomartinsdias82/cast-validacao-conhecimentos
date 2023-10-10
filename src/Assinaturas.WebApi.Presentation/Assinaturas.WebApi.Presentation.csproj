@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Assinaturas.Application\Assinaturas.Application.csproj" />
     <ProjectReference Include="..\Assinaturas.Infrastructure.IoC\Assinaturas.Infrastructure.IoC.csproj" />
+    <ProjectReference Include="..\Assinaturas.SharedKernel\Assinaturas.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

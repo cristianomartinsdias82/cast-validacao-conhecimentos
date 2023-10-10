@@ -9,24 +9,22 @@ internal class ContaEntityMapping : IEntityTypeConfiguration<Conta>
 {
     public void Configure(EntityTypeBuilder<Conta> builder)
     {
+        builder.ToTable(nameof(Conta));
+
         builder.HasKey(cn => cn.Id)
-               .HasName(Contas.IdColumnPkName);
+               .HasName(ContasMetadata.IdColumnPkName);
 
         builder.Property(cn => cn.Id)
                 .ValueGeneratedNever();
 
-        builder.Property(cn => cn.Revision)
-                .IsRowVersion()
-                .ValueGeneratedOnAddOrUpdate();
-
         builder.Property(cn => cn.Nome)
-               .IsRequired(Contas.NomeColumnIsRequired)
-               .HasColumnType(Contas.NomeColumnDataType)
-               .HasMaxLength(Contas.NomeColumnLength);
+               .IsRequired(ContasMetadata.NomeColumnIsRequired)
+               .HasColumnType(ContasMetadata.NomeColumnDataType)
+               .HasMaxLength(ContasMetadata.NomeColumnLength);
 
         builder.Property(cn => cn.Descricao)
-               .IsRequired(Contas.DescricaoColumnIsRequired)
-               .HasColumnType(Contas.DescricaoColumnDataType)
-               .HasMaxLength(Contas.DescricaoColumnLength);
+               .IsRequired(ContasMetadata.DescricaoColumnIsRequired)
+               .HasColumnType(ContasMetadata.DescricaoColumnDataType)
+               .HasMaxLength(ContasMetadata.DescricaoColumnLength);
     }
 }

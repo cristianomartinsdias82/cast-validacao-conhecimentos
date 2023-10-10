@@ -1,6 +1,6 @@
-﻿using Assinaturas.Application.Core.Results;
-using Assinaturas.Application.Enderecos.PesquisarPorCep;
+﻿using Assinaturas.Application.Enderecos.PesquisarPorCep;
 using Assinaturas.Infrastructure.Integrations.ViaCep.Core;
+using Assinaturas.SharedKernel.Results;
 using Polly;
 using RestSharp;
 using System.Text.Json;

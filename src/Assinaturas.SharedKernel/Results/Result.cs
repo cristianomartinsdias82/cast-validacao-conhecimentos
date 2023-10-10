@@ -1,4 +1,4 @@
-﻿namespace Assinaturas.Application.Core.Results;
+﻿namespace Assinaturas.SharedKernel.Results;
 
 public readonly struct Result<T, E>
 {

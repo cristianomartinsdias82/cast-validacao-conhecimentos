@@ -9,13 +9,15 @@ internal sealed class AssinaturasDbContext : DbContext
 {
     public AssinaturasDbContext(DbContextOptions<AssinaturasDbContext> options) : base(options) { }
 
+    public DbSet<Conta> Contas { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssinaturasDbContext).Assembly);
 
         modelBuilder.Entity<Conta>()
-                    .HasIndex(ld => ld.Nome, Contas.NomeColumnIndexName)
-                    .IsUnique(Contas.NomeColumnIsUnique);
+                    .HasIndex(ld => ld.Nome, ContasMetadata.NomeColumnIndexName)
+                    .IsUnique(ContasMetadata.NomeColumnIsUnique);
 
         base.OnModelCreating(modelBuilder);
     }

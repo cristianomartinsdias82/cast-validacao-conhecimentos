@@ -1,4 +1,5 @@
 ﻿using Assinaturas.Domain.Core;
+using Assinaturas.SharedKernel.Results;
 
 namespace Assinaturas.Domain.Assinaturas;
 
@@ -10,15 +11,26 @@ public class Conta : Entity, IConta
 
     protected Conta() { }
 
-    public static Conta Criar(string nome, string descricao)
+    public static async ValueTask<Result<Conta, Failure>> Criar(
+        string nome,
+        string descricao,
+        IContaRepository repository,
+        CancellationToken cancellationToken = default)
     {
-        return new()
+        var contaExists = await repository.CheckExistsAsync(ct => ct.Nome.Contains(nome), cancellationToken);
+        if (contaExists)
+            return Failure.BusinessRuleValidationError((int)ContaDomainErrorCodes.ContaExistente, default!);
+
+        var novaConta = new Conta()
         {
             Id = Guid.NewGuid(),
-            CreatedOn = DateTime.UtcNow,
             Nome = nome,
             Descricao = descricao
         };
+
+        await repository.AddAsync(novaConta, cancellationToken);
+
+        return novaConta;
     }
 
     public void Atualizar(string nome, string descricao)

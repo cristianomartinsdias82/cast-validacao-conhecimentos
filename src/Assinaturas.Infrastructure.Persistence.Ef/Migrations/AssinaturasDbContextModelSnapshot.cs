@@ -38,12 +38,6 @@ namespace Assinaturas.Infrastructure.Persistence.Ef.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar");
 
-                    b.Property<byte[]>("Revision")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("BLOB");
-
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("TEXT");
 
@@ -56,7 +50,7 @@ namespace Assinaturas.Infrastructure.Persistence.Ef.Migrations
                     b.HasIndex(new[] { "Nome" }, "IX_Contas_Nome")
                         .IsUnique();
 
-                    b.ToTable("Conta");
+                    b.ToTable("Conta", (string)null);
                 });
 #pragma warning restore 612, 618
         }

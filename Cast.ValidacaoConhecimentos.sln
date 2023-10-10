@@ -35,13 +35,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assinaturas.WebApi.Presenta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - Integrations", "5.2 - Integrations", "{5DD967AC-4771-4DCF-A74A-54FB9DC86841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assinaturas.Infrastructure.Integrations.ViaCep", "src\Assinaturas.Infrastructure.Integrations.ViaCep\Assinaturas.Infrastructure.Integrations.ViaCep.csproj", "{98E3EADF-E110-444C-86A3-DE5F406EF928}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assinaturas.Infrastructure.Integrations.ViaCep", "src\Assinaturas.Infrastructure.Integrations.ViaCep\Assinaturas.Infrastructure.Integrations.ViaCep.csproj", "{98E3EADF-E110-444C-86A3-DE5F406EF928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assinaturas.Infrastructure.IoC", "src\Assinaturas.Infrastructure.IoC\Assinaturas.Infrastructure.IoC.csproj", "{C0A70D76-4E51-4156-B9FB-593CE2CB4FC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assinaturas.Infrastructure.IoC", "src\Assinaturas.Infrastructure.IoC\Assinaturas.Infrastructure.IoC.csproj", "{C0A70D76-4E51-4156-B9FB-593CE2CB4FC1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assinaturas.Infrastructure.Persistence.Ef", "src\Assinaturas.Infrastructure.Persistence.Ef\Assinaturas.Infrastructure.Persistence.Ef.csproj", "{A831032C-6C2D-417C-9534-497ADC1A59AB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.0 - IoC", "5.0 - IoC", "{AA6C080C-BE43-4B87-8FBB-3A46421CEF97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Shared", "6 - Shared", "{396517E1-0935-4143-AE3E-6A38BC28638D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assinaturas.SharedKernel", "src\Assinaturas.SharedKernel\Assinaturas.SharedKernel.csproj", "{2F6A9855-E15E-4753-A8F3-7083CA1F4505}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +89,10 @@ Global
 		{A831032C-6C2D-417C-9534-497ADC1A59AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A831032C-6C2D-417C-9534-497ADC1A59AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A831032C-6C2D-417C-9534-497ADC1A59AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F6A9855-E15E-4753-A8F3-7083CA1F4505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F6A9855-E15E-4753-A8F3-7083CA1F4505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F6A9855-E15E-4753-A8F3-7083CA1F4505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F6A9855-E15E-4753-A8F3-7083CA1F4505}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +116,8 @@ Global
 		{C0A70D76-4E51-4156-B9FB-593CE2CB4FC1} = {AA6C080C-BE43-4B87-8FBB-3A46421CEF97}
 		{A831032C-6C2D-417C-9534-497ADC1A59AB} = {01583FEF-0436-43CB-A430-004BACBE3DE9}
 		{AA6C080C-BE43-4B87-8FBB-3A46421CEF97} = {A76A941A-38FA-4406-94FA-E72489FE2AED}
+		{396517E1-0935-4143-AE3E-6A38BC28638D} = {F98A36F3-0273-4CB2-B7BD-969E99BF36D6}
+		{2F6A9855-E15E-4753-A8F3-7083CA1F4505} = {396517E1-0935-4143-AE3E-6A38BC28638D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3C4AA4B-5B76-4CE9-A153-7CBC0CE21D60}

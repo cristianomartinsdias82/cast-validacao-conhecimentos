@@ -1,8 +1,15 @@
-﻿using Carter;
+﻿using Assinaturas.Application.Assinaturas.CriarConta;
+using Assinaturas.Application.Assinaturas.Shared;
+using Assinaturas.Application.Enderecos.PesquisarPorCep;
+using Assinaturas.SharedKernel.Results;
+using Assinaturas.WebApi.Presentation.Core;
+using Carter;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using System.Runtime.ConstrainedExecution;
 using static Assinaturas.WebApi.Presentation.Core.Constants;
 
 namespace Assinaturas.WebApi.Presentation.Modules.Assinaturas;
@@ -37,11 +44,13 @@ public class ContasModule : ICarterModule
         .WithName(RouteNames.GetContaById);
 
 
-        app.MapPost(ROUTE, (object conta, ISender sender, CancellationToken cancellationToken) =>
+        app.MapPost(ROUTE, async ([FromBody]CriarContaRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
-            var newlyCreatedFakeContaId = Guid.NewGuid();
+            var result = await sender.Send(request, cancellationToken);
 
-            return Results.CreatedAtRoute(RouteNames.GetContaById, new { id = newlyCreatedFakeContaId }, new { conta = "X" });
+            return result.Match(
+                response => Results.CreatedAtRoute(RouteNames.GetContaById, new { id = result.Value.Conta.Id }, result.Value.Conta),
+                error => ResultHelper.Problem(error));
         })
         .WithName(RouteNames.PostContas);
 

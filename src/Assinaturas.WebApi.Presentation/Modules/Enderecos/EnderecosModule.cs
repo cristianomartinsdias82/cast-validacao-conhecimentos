@@ -1,4 +1,5 @@
 ﻿using Assinaturas.Application.Enderecos.PesquisarPorCep;
+using Assinaturas.WebApi.Presentation.Core;
 using Carter;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -27,7 +28,7 @@ public class EnderecosModule : ICarterModule
 
             return result.Match(
                 response => !response.Endereco.Vazio ? Results.Ok(response.Endereco) : Results.NotFound(),
-                _ => Results.Problem(extensions: new Dictionary<string, object?> { ["errorCode"] = result.Error })
+                _ => ResultHelper.Problem(result.Error)
             );
         })
         .WithName(RouteNames.PesquisarPorCep);

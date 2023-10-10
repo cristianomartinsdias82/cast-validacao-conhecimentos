@@ -1,4 +1,4 @@
-﻿using Assinaturas.Application.Core.Results;
+﻿using Assinaturas.SharedKernel.Results;
 using MediatR;
 
 namespace Assinaturas.Application.Enderecos.PesquisarPorCep;

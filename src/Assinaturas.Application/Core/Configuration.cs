@@ -1,4 +1,5 @@
 ﻿using Assinaturas.Application.Core.Behaviours.Validation;
+using Assinaturas.Domain.Assinaturas;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +12,9 @@ public static class Configuration
 {
     private static Assembly ApplicationAssemblyRef = typeof(Configuration).Assembly;
 
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApplicationServices(
+        this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.AddValidatorsFromAssembly(ApplicationAssemblyRef)
                 .AddMediatR(config =>

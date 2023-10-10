@@ -1,9 +1,11 @@
-﻿using Assinaturas.Domain.Assinaturas;
+﻿using Assinaturas.Application.Assinaturas.Shared;
+using Assinaturas.Domain.Assinaturas;
+using Assinaturas.SharedKernel.Results;
 using MediatR;
 
 namespace Assinaturas.Application.Assinaturas.CriarConta;
 
-public sealed class CriarContaHandler : IRequestHandler<CriarContaRequest, CriarContaResponse>
+internal sealed class CriarContaHandler : IRequestHandler<CriarContaRequest, Result<CriarContaResponse, Failure>>
 {
     private readonly IContaRepository _contaRepository;
 
@@ -12,10 +14,17 @@ public sealed class CriarContaHandler : IRequestHandler<CriarContaRequest, Criar
         _contaRepository = contaRepository;
     }
 
-    public async Task<CriarContaResponse> Handle(CriarContaRequest request, CancellationToken cancellationToken)
+    public async Task<Result<CriarContaResponse, Failure>> Handle(CriarContaRequest request, CancellationToken cancellationToken)
     {
-        //TODO: Implement it
+        var criacaoNovaContaResult = await Conta.Criar(
+                                            request.Nome,
+                                            request.Descricao,
+                                            _contaRepository,
+                                            cancellationToken);
 
-        return new();
+        if (criacaoNovaContaResult.IsSuccessful)
+            return new CriarContaResponse(criacaoNovaContaResult.Value.MapToDto());
+
+        return criacaoNovaContaResult.Error;
     }
 }

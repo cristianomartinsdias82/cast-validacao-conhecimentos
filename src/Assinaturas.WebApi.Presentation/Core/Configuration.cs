@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using static Assinaturas.WebApi.Presentation.Core.GlobalErrorHandler;
+using static Assinaturas.Application.Core.Configuration;
 
 namespace Assinaturas.WebApi.Presentation.Core;
 
 public static class Configuration
 {
+    private static WebApplication app = default!;
+
     public static WebApplication ConfigureAndBuild(this WebApplicationBuilder builder)
     {
         // Add services to the container.
@@ -17,7 +20,7 @@ public static class Configuration
         builder.Services.AddApplicationServices(builder.Configuration);
         builder.Services.AddInfrastructureServices(builder.Configuration);
 
-        var app = builder.Build();
+        app = builder.Build();
 
         app.MapCarter();
 

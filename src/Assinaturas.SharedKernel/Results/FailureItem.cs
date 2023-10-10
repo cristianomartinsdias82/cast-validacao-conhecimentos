@@ -1,4 +1,4 @@
-﻿namespace Assinaturas.Application.Core.Behaviours.Validation;
+﻿namespace Assinaturas.SharedKernel.Results;
 
 public struct FailureItem
 {
