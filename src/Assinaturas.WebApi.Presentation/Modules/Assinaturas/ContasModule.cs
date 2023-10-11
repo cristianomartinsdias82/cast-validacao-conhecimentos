@@ -1,4 +1,5 @@
 ﻿using Assinaturas.Application.Assinaturas.CriarConta;
+using Assinaturas.Application.Assinaturas.ObterContas;
 using Assinaturas.Application.Assinaturas.Shared;
 using Assinaturas.Application.Enderecos.PesquisarPorCep;
 using Assinaturas.SharedKernel.Results;
@@ -30,9 +31,11 @@ public class ContasModule : ICarterModule
 
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet(ROUTE, (ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet(ROUTE, async (ISender sender, CancellationToken cancellationToken) =>
         {
-            return Results.Ok(new string[] { "X", "Y", "Z" });
+            var result = await sender.Send(new ObterContasRequest(), cancellationToken);
+
+            return Results.Ok(result.Contas);
         })
         .WithName(RouteNames.GetContas);
 

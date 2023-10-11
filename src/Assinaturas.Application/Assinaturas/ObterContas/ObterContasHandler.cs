@@ -15,8 +15,8 @@ public sealed class ObterContasHandler : IRequestHandler<ObterContasRequest, Obt
 
     public async Task<ObterContasResponse> Handle(ObterContasRequest request, CancellationToken cancellationToken)
     {
-        //TODO: Implement it
+        var contas = await _contaRepository.FetchAsync(cancellationToken);
 
-        return new(default!);
+        return new(contas.Select(ct => ct.MapToDto()).ToList());
     }
 }
