@@ -33,9 +33,21 @@ public class Conta : Entity, IConta
         return novaConta;
     }
 
-    public void Atualizar(string nome, string descricao)
+    public async ValueTask<Result<Conta, Failure>> Atualizar(
+        string nome,
+        string descricao,
+        IContaRepository repository,
+        CancellationToken cancellationToken = default)
     {
+        var contaExists = await repository.CheckExistsAsync(ct => ct.Id != Id && ct.Nome.Contains(nome), cancellationToken);
+        if (contaExists)
+            return Failure.BusinessRuleValidationError((int)ContaDomainErrorCodes.ContaExistente, default!);
+
         Nome = nome;
         Descricao = descricao;
+
+        await repository.UpdateAsync(this, cancellationToken);
+
+        return this;
     }
 }

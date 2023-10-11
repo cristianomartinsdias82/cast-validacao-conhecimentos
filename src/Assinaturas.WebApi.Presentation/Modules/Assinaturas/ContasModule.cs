@@ -1,4 +1,5 @@
-﻿using Assinaturas.Application.Assinaturas.CriarConta;
+﻿using Assinaturas.Application.Assinaturas.AtualizarConta;
+using Assinaturas.Application.Assinaturas.CriarConta;
 using Assinaturas.Application.Assinaturas.ObterContaPorId;
 using Assinaturas.Application.Assinaturas.ObterContas;
 using Assinaturas.Application.Assinaturas.RemoverConta;
@@ -58,9 +59,13 @@ public class ContasModule : ICarterModule
         .WithName(RouteNames.PostContas);
 
 
-        app.MapPut(ROUTE, (object conta, ISender sender, CancellationToken cancellationToken) =>
+        app.MapPut(ROUTE, async ([FromBody]AtualizarContaRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
-            return Results.Ok(conta);
+            var result = await sender.Send(request, cancellationToken);
+
+            return result.Match(
+                response => Results.Ok(result.Value.Conta),
+                error => ResultHelper.Problem(error));
         })
         .WithName(RouteNames.PutContas);
 

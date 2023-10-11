@@ -1,9 +1,11 @@
-﻿using Assinaturas.Domain.Assinaturas;
+﻿using Assinaturas.Application.Assinaturas.Shared;
+using Assinaturas.Domain.Assinaturas;
+using Assinaturas.SharedKernel.Results;
 using MediatR;
 
 namespace Assinaturas.Application.Assinaturas.AtualizarConta;
 
-public sealed class AtualizarContaHandler : IRequestHandler<AtualizarContaRequest, AtualizarContaResponse>
+internal sealed class AtualizarContaHandler : IRequestHandler<AtualizarContaRequest, Result<AtualizarContaResponse, Failure>>
 {
     private readonly IContaRepository _contaRepository;
 
@@ -12,10 +14,21 @@ public sealed class AtualizarContaHandler : IRequestHandler<AtualizarContaReques
         _contaRepository = contaRepository;
     }
 
-    public async Task<AtualizarContaResponse> Handle(AtualizarContaRequest request, CancellationToken cancellationToken)
+    public async Task<Result<AtualizarContaResponse, Failure>> Handle(AtualizarContaRequest request, CancellationToken cancellationToken)
     {
-        //TODO: Implement it
+        var conta = await _contaRepository.GetByIdAsync(request.Id, cancellationToken);
+        if (conta is null)
+            return Failure.InputValidationError((int)AtualizarContaErrorCodes.ContaNaoEncontrada, default!);
 
-        return new();
+        var atualizacaoContaResult = await conta.Atualizar(
+                                            request.Nome,
+                                            request.Descricao,
+                                            _contaRepository,
+                                            cancellationToken);
+
+        if (atualizacaoContaResult.IsSuccessful)
+            return new AtualizarContaResponse(atualizacaoContaResult.Value.MapToDto());
+
+        return atualizacaoContaResult.Error;
     }
 }
