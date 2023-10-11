@@ -56,6 +56,9 @@ internal sealed class ContaRepository : IContaRepository
 
     public async Task<bool> UpdateAsync(Conta conta, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        _dbContext.Contas.Update(conta);
+        var rowsAffected = await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return rowsAffected > 0;
     }
 }
