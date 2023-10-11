@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using Xunit;
 using FluentAssertions;
 
-namespace Assinaturas.UnitTests.Application;
+namespace Assinaturas.UnitTests.Application.CriarConta;
 
 public class CriarContaHandlerTests
 {

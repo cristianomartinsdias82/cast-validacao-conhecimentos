@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Assinaturas.Application.Assinaturas.ObterContas;
 
-public sealed class ObterContasHandler : IRequestHandler<ObterContasRequest, ObterContasResponse>
+internal sealed class ObterContasHandler : IRequestHandler<ObterContasRequest, ObterContasResponse>
 {
     private readonly IContaRepository _contaRepository;
 

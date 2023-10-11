@@ -1,8 +1,6 @@
 ﻿using Assinaturas.Application.Assinaturas.CriarConta;
+using Assinaturas.Application.Assinaturas.ObterContaPorId;
 using Assinaturas.Application.Assinaturas.ObterContas;
-using Assinaturas.Application.Assinaturas.Shared;
-using Assinaturas.Application.Enderecos.PesquisarPorCep;
-using Assinaturas.SharedKernel.Results;
 using Assinaturas.WebApi.Presentation.Core;
 using Carter;
 using MediatR;
@@ -10,7 +8,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using System.Runtime.ConstrainedExecution;
 using static Assinaturas.WebApi.Presentation.Core.Constants;
 
 namespace Assinaturas.WebApi.Presentation.Modules.Assinaturas;
@@ -40,9 +37,11 @@ public class ContasModule : ICarterModule
         .WithName(RouteNames.GetContas);
 
 
-        app.MapGet($"{ROUTE}/{{id:Guid}}", (Guid id, ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet($"{ROUTE}/{{id:Guid}}", async(Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
-            return Results.Ok(new { conta = "X" });
+            var result = await sender.Send(new ObterContaPorIdRequest(id), cancellationToken);
+
+            return result.Conta is null ? Results.NotFound() : Results.Ok(result.Conta);
         })
         .WithName(RouteNames.GetContaById);
 

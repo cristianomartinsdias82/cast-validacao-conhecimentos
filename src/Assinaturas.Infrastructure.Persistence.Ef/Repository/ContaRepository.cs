@@ -1,6 +1,5 @@
 ﻿using Assinaturas.Domain.Assinaturas;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Linq.Expressions;
 
 namespace Assinaturas.Infrastructure.Persistence.Ef.Repository;
@@ -40,9 +39,10 @@ internal sealed class ContaRepository : IContaRepository
                     .ToListAsync(cancellationToken);
 
     public async Task<Conta?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
+        => await _dbContext
+                    .Contas
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(ct => ct.Id == id, cancellationToken);
 
     public async Task<bool> RemoveAsync(Guid id, CancellationToken cancellationToken = default)
     {

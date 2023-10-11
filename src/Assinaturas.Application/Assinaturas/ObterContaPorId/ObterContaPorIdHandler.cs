@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Assinaturas.Application.Assinaturas.ObterContaPorId;
 
-public sealed class ObterContaPorIdHandler : IRequestHandler<ObterContaPorIdRequest, ObterContaPorIdResponse>
+internal sealed class ObterContaPorIdHandler : IRequestHandler<ObterContaPorIdRequest, ObterContaPorIdResponse>
 {
     private readonly IContaRepository _contaRepository;
 
@@ -15,8 +15,8 @@ public sealed class ObterContaPorIdHandler : IRequestHandler<ObterContaPorIdRequ
 
     public async Task<ObterContaPorIdResponse> Handle(ObterContaPorIdRequest request, CancellationToken cancellationToken)
     {
-        //TODO: Implement it
+        var conta = await _contaRepository.GetByIdAsync(request.Id, cancellationToken);
 
-        return new(default!);
+        return new(conta?.MapToDto());
     }
 }

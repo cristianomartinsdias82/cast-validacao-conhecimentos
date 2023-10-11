@@ -6,6 +6,8 @@ public sealed class ObterContaPorIdRequestValidator : AbstractValidator<ObterCon
 {
     public ObterContaPorIdRequestValidator()
     {
-        
+        RuleFor(ct => ct.Id)
+            .NotEmpty()
+            .WithErrorCode(((int)ObterContaPorIdErrorCodes.IdNaoInformado).ToString());
     }
 }
