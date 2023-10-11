@@ -1,6 +1,7 @@
 ﻿using Assinaturas.Application.Assinaturas.CriarConta;
 using Assinaturas.Application.Assinaturas.ObterContaPorId;
 using Assinaturas.Application.Assinaturas.ObterContas;
+using Assinaturas.Application.Assinaturas.RemoverConta;
 using Assinaturas.WebApi.Presentation.Core;
 using Carter;
 using MediatR;
@@ -64,8 +65,10 @@ public class ContasModule : ICarterModule
         .WithName(RouteNames.PutContas);
 
 
-        app.MapDelete($"{ROUTE}/{{id:Guid}}", (Guid id, ISender sender, CancellationToken cancellationToken) =>
+        app.MapDelete($"{ROUTE}/{{id:Guid}}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
+            await sender.Send(new RemoverContaRequest(id), cancellationToken);
+
             return Results.NoContent();
         })
         .WithName(RouteNames.DeleteContas);

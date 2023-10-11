@@ -6,6 +6,8 @@ public sealed class RemoverContaRequestValidator : AbstractValidator<RemoverCont
 {
     public RemoverContaRequestValidator()
     {
-        
+        RuleFor(ct => ct.Id)
+            .NotEmpty()
+            .WithErrorCode(((int)RemoverContaErrorCodes.IdNaoInformado).ToString());
     }
 }

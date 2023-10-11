@@ -9,7 +9,7 @@ internal class ContaEntityMapping : IEntityTypeConfiguration<Conta>
 {
     public void Configure(EntityTypeBuilder<Conta> builder)
     {
-        builder.ToTable(nameof(Conta));
+        builder.ToTable(ContasMetadata.TableName);
 
         builder.HasKey(cn => cn.Id)
                .HasName(ContasMetadata.IdColumnPkName);

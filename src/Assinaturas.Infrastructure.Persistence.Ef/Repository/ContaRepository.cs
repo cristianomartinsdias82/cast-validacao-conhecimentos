@@ -1,6 +1,8 @@
 ﻿using Assinaturas.Domain.Assinaturas;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+using static Assinaturas.Domain.SchemaMetadata.EntitiesSchemaMetadata;
 
 namespace Assinaturas.Infrastructure.Persistence.Ef.Repository;
 
@@ -46,7 +48,10 @@ internal sealed class ContaRepository : IContaRepository
 
     public async Task<bool> RemoveAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var sql = FormattableStringFactory.Create($"DELETE FROM [{ContasMetadata.TableName}] WHERE [Id] = '{id.ToString().ToUpperInvariant()}'");
+        var rowsAffected = await _dbContext.Database.ExecuteSqlAsync(sql, cancellationToken);
+
+        return rowsAffected > 0;
     }
 
     public async Task<bool> UpdateAsync(Conta conta, CancellationToken cancellationToken = default)

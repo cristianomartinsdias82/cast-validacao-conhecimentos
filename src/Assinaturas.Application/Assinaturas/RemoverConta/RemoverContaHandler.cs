@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Assinaturas.Application.Assinaturas.RemoverConta;
 
-public sealed class RemoverContaHandler : IRequestHandler<RemoverContaRequest, RemoverContaResponse>
+internal sealed class RemoverContaHandler : IRequestHandler<RemoverContaRequest, RemoverContaResponse>
 {
     private readonly IContaRepository _contaRepository;
 
@@ -14,7 +14,7 @@ public sealed class RemoverContaHandler : IRequestHandler<RemoverContaRequest, R
 
     public async Task<RemoverContaResponse> Handle(RemoverContaRequest request, CancellationToken cancellationToken)
     {
-        //TODO: Implement it
+        await _contaRepository.RemoveAsync(request.Id, cancellationToken);
 
         return new();
     }

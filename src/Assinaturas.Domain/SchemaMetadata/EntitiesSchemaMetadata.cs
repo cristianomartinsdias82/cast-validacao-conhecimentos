@@ -4,6 +4,8 @@ public static class EntitiesSchemaMetadata
 {
     public static class ContasMetadata
     {
+        public const string TableName = "Conta";
+
         public const string NomeColumnIndexName = "IX_Contas_Nome";
         public const string IdColumnPkName = "PK_Contas_Id";
         
