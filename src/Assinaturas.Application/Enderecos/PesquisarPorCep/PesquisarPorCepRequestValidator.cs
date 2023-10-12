@@ -12,9 +12,8 @@ public sealed class PesquisarPorCepRequestValidator : AbstractValidator<Pesquisa
             .WithErrorCode(((int)CepNaoInformado).ToString());
 
         When(pesq => !string.IsNullOrWhiteSpace(pesq.Cep), () => {
-
-            RuleFor(it => it.Cep)
-                .Matches(@"\d{8}")
+            RuleFor(pesq => pesq.Cep)
+                .Must(cep => cep.Length.Equals(8) && int.TryParse(cep, out _))
                 .WithErrorCode(((int)CepInvalido).ToString());
 
         });
