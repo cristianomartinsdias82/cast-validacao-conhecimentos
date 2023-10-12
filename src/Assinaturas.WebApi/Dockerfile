@@ -8,6 +8,13 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Assinaturas.WebApi/Assinaturas.WebApi.csproj", "src/Assinaturas.WebApi/"]
+COPY ["src/Assinaturas.WebApi.Presentation/Assinaturas.WebApi.Presentation.csproj", "src/Assinaturas.WebApi.Presentation/"]
+COPY ["src/Assinaturas.Application/Assinaturas.Application.csproj", "src/Assinaturas.Application/"]
+COPY ["src/Assinaturas.Domain/Assinaturas.Domain.csproj", "src/Assinaturas.Domain/"]
+COPY ["src/Assinaturas.SharedKernel/Assinaturas.SharedKernel.csproj", "src/Assinaturas.SharedKernel/"]
+COPY ["src/Assinaturas.Infrastructure.IoC/Assinaturas.Infrastructure.IoC.csproj", "src/Assinaturas.Infrastructure.IoC/"]
+COPY ["src/Assinaturas.Infrastructure.Integrations.ViaCep/Assinaturas.Infrastructure.Integrations.ViaCep.csproj", "src/Assinaturas.Infrastructure.Integrations.ViaCep/"]
+COPY ["src/Assinaturas.Infrastructure.Persistence.Ef/Assinaturas.Infrastructure.Persistence.Ef.csproj", "src/Assinaturas.Infrastructure.Persistence.Ef/"]
 RUN dotnet restore "src/Assinaturas.WebApi/Assinaturas.WebApi.csproj"
 COPY . .
 WORKDIR "/src/src/Assinaturas.WebApi"
