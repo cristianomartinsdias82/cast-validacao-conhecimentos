@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Assinaturas.WebUI/Assinaturas.WebUI.csproj", "Assinaturas.WebUI/"]
-RUN dotnet restore "Assinaturas.WebUI/Assinaturas.WebUI.csproj"
+COPY ["src/Assinaturas.WebUI/Assinaturas.WebUI.csproj", "src/Assinaturas.WebUI/"]
+RUN dotnet restore "src/Assinaturas.WebUI/Assinaturas.WebUI.csproj"
 COPY . .
-WORKDIR "/src/Assinaturas.WebUI"
+WORKDIR "/src/src/Assinaturas.WebUI"
 RUN dotnet build "Assinaturas.WebUI.csproj" -c Release -o /app/build
 
 FROM build AS publish

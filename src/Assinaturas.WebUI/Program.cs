@@ -1,3 +1,8 @@
+using Assinaturas.WebUI.Core.Integrations.AssinaturasApi;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+
 namespace Assinaturas.WebUI
 {
     public class Program
@@ -7,14 +12,34 @@ namespace Assinaturas.WebUI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddRazorPages();
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddAssinaturasApiIntegrationServiceClient(builder.Configuration);
+            
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+            builder.Services
+              .AddMvc()
+              .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+              .AddDataAnnotationsLocalization();
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("pt-BR"),
+                    new CultureInfo("en-US")
+                };
+
+                options.SetDefaultCulture(supportedCultures[0].Name)
+                        .AddSupportedCultures(supportedCultures.Select(cul => cul.Name).ToArray())
+                        .AddSupportedUICultures(supportedCultures.Select(cul => cul.Name).ToArray());
+            });
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -26,7 +51,11 @@ namespace Assinaturas.WebUI
 
             app.UseAuthorization();
 
-            app.MapRazorPages();
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
             app.Run();
         }

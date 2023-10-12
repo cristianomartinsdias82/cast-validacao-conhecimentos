@@ -1,0 +1,48 @@
+﻿@model ListarContasViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Titulo"];
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col">
+        <a asp-action="Manter" class="btn btn-secondary">@Localizer["RotuloBotaoNovaConta"]</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @if(Model.Contas?.Any() ?? false)
+        {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>@Localizer["CabecalhoColunaNome"]</td>
+                    <td>@Localizer["CabecalhoColunaDescricao"]</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.Contas)
+                {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.Descricao</td>
+                    <td>
+                        <form method="post" asp-action="Remover">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <a asp-action="Manter" asp-route-id="@item.Id" class="btn btn-primary">@Localizer["RotuloBotaoEditar"]</a>
+                            <input onclick="return confirm('@string.Format(@Localizer["ConfirmacaoExclusaoConta"].Value, item.Nome)');" type="submit" class="btn btn-danger" value="@Localizer["RotuloBotaoRemover"]" />
+                        </form>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+        <div class="alert alert-warning">@Localizer["PalavraChave"]</div>
+        }
+    </div>
+</div>
