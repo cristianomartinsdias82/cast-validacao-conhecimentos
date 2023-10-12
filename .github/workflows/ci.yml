@@ -58,3 +58,26 @@ jobs:
       with:
         name: webapi-artifact
         path: ./publish
+
+  push_to_registry:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+
+    - name: Autenticação no Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Construção e publicação da imagem
+      uses: docker/build-push-action@v4
+      with:
+        context: ./src/Assinaturas.WebApi
+        push: true
+        tags: |
+          cristianomartinsdiasspbr1982/cast-validacao-conhecimentos:v${{ github.run_id }}
+          cristianomartinsdiasspbr1982/cast-validacao-conhecimentos:latest
