@@ -1,0 +1,60 @@
+name: Pipeline da aplicação
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Build da aplicação
+      run: dotnet build --configuration Release
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Executa os testes
+      run: dotnet test
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Publicação do artefato
+      run: dotnet publish --configuration Release --output ./publish
+
+    - name: Arquivação do artefato
+      uses: actions/upload-artifact@v2
+      with:
+        name: webapi-artifact
+        path: ./publish
