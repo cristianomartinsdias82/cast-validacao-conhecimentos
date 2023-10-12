@@ -76,7 +76,7 @@ jobs:
     - name: Construção e publicação da imagem
       uses: docker/build-push-action@v4
       with:
-        context: ./src/Assinaturas.WebApi
+        context: .
         push: true
         tags: |
           cristianomartinsdiasspbr1982/cast-validacao-conhecimentos:v${{ github.run_id }}
