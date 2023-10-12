@@ -3,7 +3,7 @@ name: Pipeline da aplicação
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
     
     steps:
     - name: Checkout do código
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -27,7 +27,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -43,7 +43,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -54,7 +54,7 @@ jobs:
       run: dotnet publish --configuration Release --output ./publish
 
     - name: Arquivação do artefato
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: webapi-artifact
         path: ./publish
