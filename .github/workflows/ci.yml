@@ -54,7 +54,7 @@ jobs:
       run: dotnet publish --configuration Release --output ./publish
 
     - name: Arquivação do artefato
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: webapi-artifact
         path: ./publish
